@@ -1,0 +1,63 @@
+SQL tuff to practice set 2
+
+1.Display the names of the employee in order of salary i.e. the name of employee earning lowest salary should be first.
+ANS select name,salary from employee order by salary asc;
+
+2.Display the empno,ename,deptno,salary sort the output first based on name within name by deptno and within deptno by salary.
+ANS select name, job,salary from employee order by name,job,salary ;
+
+3.Display the name of the employee along with their annual salary (salary*12). The name of the employee earning highest annual salary should appear first.
+ANS select name,  (salary*12)as annualsalary from employee order by annualsalary desc;
+
+4.Display the names,salary,HRA,PF,DA,Total Salary for each employeer.
+  The output should be in the order of total salary,HRA 15% salary,DA 10% salary, PF 5% of salary, total salary will be (salary+HRA+DA)-PF
+ANS select *, HRA=(salary*0.15) ,DA= (salary*0.10),PF=(salary*0.5 ), 
+(salary+salary*0.15+salary*0.10-salary*0.5 )as TOTATLSALARY from employee;
+
+5.Display the department name  and total number of employees working in each department.
+ANS select dept count(*) as cc from employee group by dept;
+
+6.Display the department name  and total salary for each department
+ANS select dept ,sum(salary) as tt from employee roup by dept;
+
+7.Display the department name  and total maximum salary for each department
+ANS select dept, max(salary) as mmax from employee group by dept;
+
+8.Display the department numbers and total salary for each department whose employee count is more than 2.
+ANS select dept ,sum(salary),count(*) from employee group by dept having count(*)>=2;
+
+9.Display the names of HR whos earn a salary more than highest salary of Finance department.
+ANS select name from employee where dept='HR' and salary>(select max(salary) from employee where dept='FINANCE');
+
+10.Display the name of employess who earn highest salary in their respective department?
+ANS select name,dept  from employee where salary in(select max(salary)from employee group by dept);
+
+11.Display the name of employess who are working in Accounting department.
+ANS select name from employee where dept='ACCOUNT';
+
+12.Display the name of employess who are working in Mumbai.
+ANS select name from employee where city='mumbai';
+
+13.Display the department having total salary greater than the maximum salary for managers.
+ANS select job, sum(salary) from employee group by job having sum(salary)>(select max(salary) from employee where job='manager');
+
+14.Display the employess last or bottom 5 records.
+ANS select * from employee order by id desc;
+
+15.Display the employess whose employee ID is even.
+ANS select * from employee where id%2=0;
+
+16.Display the employess whose employee ID is odd.
+ANS select * from employee where id%2=1;
+
+17.How to find '_' within two names (for ex: name like Praveen_Patil)
+ANS select CHARINDEX('_','priya_kale');
+
+18.Display the maximum salary from being paid to Finance department from employee table.
+ANS select dept , max(salary)as mmax from employee where dept='Finance' group by dept;
+
+19.Display the minimum salary from being paid to HR department from from employee table.
+ANS select dept , min(salary)as mmin from employee where dept='HR' group by dept;
+
+20.Display the Average salary drwan by Manager department from from employee table.
+ANS select dept , AVG(salary)as mAVG from employee where dept='MANAGER' group by dept;

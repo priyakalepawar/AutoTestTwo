@@ -1,0 +1,61 @@
+SQL tuff to practice set 1
+
+1.Display the details of all the employess.
+ANS select * from employee;
+
+2.Display the name and job for all the employess.
+ANS  select name,job from employee;
+
+3.Display the name and salary for all the employess.
+ANS select name,salary from employee;
+
+4.Display the employee name and total salary for all the employess.
+ANS select count(name)as cc,sum(salary)as ssum from employee;
+
+5.Display the employee name and annual salary for all the employess.
+ANS select name, salary_year=salary*12 from employee;
+
+6.Display the employee names of all employess who are working in HR department.
+ANS select name from employee where job='HR'
+
+7.Display the employee names of all employess who are working in HR department and salary is greater than 2000.
+ANS select name from employee where job='HR' and salary>2000;
+
+8.Display the employee number who are earning same salary.
+ANS select name,salary from employee where salary in(select  salary from employee group by salary having count(*)>1);
+
+9.Display the names of employess whos are working in organization for the past 5 years.
+ANS select name,datediff(yy,joindate,getdate())as diff from employee where datediff(yy,joindate,getdate())<=5;
+
+10.Display the list of employess who have joined the company before 30-01-2020 after 30-07-2020?
+ANS select * from employee where joindate<'2020-01-30' or joindate>'2020-07-30';
+
+11.Display current date.
+ANS select getdate();
+
+12.Display all the tables name from database?
+ANS select * from INFORMATION_SCHEMA.TABLES;
+
+13.Display the employess whos name start with alphabet 'S'.
+ANS select * from employee where name like 'S%';
+
+14.Display the employess whos name ends with alphabet 'S'.
+ANS select * from employee where name like '%S';
+
+15.Display the employess whose names have second alphabet 'R' in their names.
+ANS select * from employee where name like '_R%';
+
+16.Select the names of the employee whose names is exactly five charecter of length.
+ANS select * from employee where name like '_____';
+
+17.Display the total salary being paid to all employess.
+ANS select sum(salary)as paid from employee;
+
+18.Display the maximum salary from employee table.
+ANS select MAX(salary)as paid from employee;
+
+19.Display the minimum salary from employee table.
+ANS select MIN(salary)as paid from employee;
+
+20.Display the Average salary from employee table.
+ANS select AVG(salary)as paid from employee;
